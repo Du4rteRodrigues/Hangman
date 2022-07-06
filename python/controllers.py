@@ -201,6 +201,9 @@ def stats(hm):
     restart = input("'Y' if yes or 'N' if no: ")
     if restart == 'Y':
         hm.word = None
+        hm.wrong_attempts.clear()
+        hm.n_rounds = 0
+        hm.n_mistakes = 0
     elif restart == 'N':
         vw.playing = False
 
