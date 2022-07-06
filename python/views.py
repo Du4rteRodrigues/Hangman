@@ -49,6 +49,7 @@ while playing:
                     print(f"'{attempt}' isn't the word :(")
                     ctr.check_fails(hm)
                 else:
+                    hm.n_rounds +=1
                     print("You are correct! :)")
                     ctr.stats(hm)
             else:
