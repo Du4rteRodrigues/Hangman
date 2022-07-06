@@ -3,6 +3,7 @@ import views as vw
 from models import hangman as hm
 import os
 
+# Shows all operations
 def get_operations():
     print("x: End Game")
     print("1: Try Letter")
@@ -12,25 +13,7 @@ def get_operations():
     print("5: View Failed Attempts")
 
 
-def clear_terminal():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-def check_type(word):
-    for element in word:
-        try:
-            element ==  int(element)
-        except ValueError:
-            return True
-        return False
-
-
-def check_length(letter):
-    if len(letter) == 1:
-        return True
-    return False
-
-
+# Saves the word 
 def save_word(word,hm):
     hm.word = word
     h_word = ""
@@ -42,6 +25,49 @@ def save_word(word,hm):
     return True
 
 
+# Clears the terminal
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+#------------------------------------Checks------------------------------------
+
+# Checkes the type of the word
+def check_type(word):
+    for element in word:
+        try:
+            element ==  int(element)
+        except ValueError:
+            return True
+        return False
+
+
+# Checked the length of the letters
+def check_length(letter):
+    if len(letter) == 1:
+        return True
+    return False
+
+
+# Checks if the max number of fails has been reached
+def check_fails(hm):
+    fails = hm.n_mistakes
+    if fails > 6:
+        stats(hm)
+    return False
+
+
+# Checkes if attempt already exists
+def check_misses(word, hm):
+    attempts = hm.wrong_attempts
+    if word in attempts:
+        return True
+    return False
+
+#-------------------------------------------------------------------------------------------
+
+#---------------------------------------User_attempts---------------------------------------
+
+# Letter inputed by the user
 def try_letter(letter,hm):
     word = hm.word
     hidden_word = hm.hidden_word
@@ -58,6 +84,7 @@ def try_letter(letter,hm):
     return False
 
 
+# Word inputed by the user
 def try_word(attempt,hm):
     word = hm.word
     if word == attempt:
@@ -67,20 +94,21 @@ def try_word(attempt,hm):
     hm.n_rounds +=1
     return False
 
+#-------------------------------------------------------------------------------------------
 
-def check_misses(word, hm):
-    attempts = hm.wrong_attempts
-    if word in attempts:
-        return True
-    return False
+#----------------------------------------Progress-------------------------------------------
 
+# Returns the progress of the word
 def get_word(hm):
     print(hm.hidden_word)
 
 
+# Returns the list of the failed attempts
 def get_wrg_attempts(hm):
     print(hm.wrong_attempts)
 
+
+# Contains the progress of the hanged man
 def hangman(hm):
     fails = hm.n_mistakes
     if fails == 0:
@@ -162,6 +190,7 @@ def hangman(hm):
         print("_____________|")
 
 
+# Returns end of game stats
 def stats(hm):
     print("\n---Game Over!---")
     print(f"Word: {hm.word}")
@@ -175,10 +204,4 @@ def stats(hm):
     elif restart == 'N':
         vw.playing = False
 
-
-def check_fails(hm):
-    fails = hm.n_mistakes
-    if fails > 6:
-        stats(hm)
-    return False
-        
+#-------------------------------------------------------------------------------------------

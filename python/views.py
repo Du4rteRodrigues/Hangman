@@ -16,14 +16,17 @@ while playing:
         print("\nChoose operation '0' for help.")
         operation = (input("Choose an operation: "))
 
+        # Help
         if operation == '0':
             ctr.get_operations()
 
+        # End Game
         elif operation == 'x':
             print("Game Over!\n")
             ctr.clear_terminal()
             hm.word = None
 
+        # Try letter
         elif operation == '1':
             letter = str(input("Try a letter: "))
             if ctr.check_length(letter):
@@ -38,6 +41,7 @@ while playing:
             else:
                 print("Try only 1 letter!")
 
+        # Try Word
         elif operation == '2':
             attempt = str(input("Try a word: "))
             if not ctr.check_misses(attempt, hm):
@@ -50,12 +54,15 @@ while playing:
             else:
                 print("You already tried that! Try again")
 
+        # Get Word Progress
         elif operation == '3':
             ctr.get_word(hm)
 
+        # Get Hangman progress
         elif operation == '4':
             ctr.hangman(hm)
 
+        # Get Wrong Attempts
         elif operation == '5':
             ctr.get_wrg_attempts(hm)
         
