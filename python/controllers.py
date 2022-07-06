@@ -16,11 +16,14 @@ def get_operations():
 # Saves the word 
 def save_word(word,hm):
     hm.word = word
-    h_word = ""
-    space = "_ "
+    hidden_word = ""
+    slot = "_ "
+    space = "- "
     for element in word:
-        h_word += space
-    hm.hidden_word = h_word
+        if element == "-":
+            hidden_word += space
+        hidden_word += slot
+    hm.hidden_word = hidden_word
     clear_terminal()
     return True
 
@@ -71,10 +74,11 @@ def check_misses(word, hm):
 def try_letter(letter,hm):
     word = hm.word
     hidden_word = hm.hidden_word
-    for l in re.finditer(letter,word):
-        hidden_word = hidden_word[:(l.start())*2] + letter + hidden_word[2*(l.start())+1:]
-        hm.hidden_word = hidden_word
-        hm.n_rounds +=1
+    for element in word:
+        for l in re.finditer(letter,word):
+            hidden_word = hidden_word[:(l.start())*2] + letter + hidden_word[2*(l.start())+1:]
+            hm.hidden_word = hidden_word
+            hm.n_rounds +=1
         if "_" not in hidden_word:
             stats(hm)
         return hm.hidden_word
