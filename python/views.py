@@ -35,7 +35,7 @@ while playing:
                         print(f"'{letter}' isn't in the word :(")
                         ctr.check_fails(hm)
                     else:
-                        print("You are correct! yay :)")
+                        print("You are correct! :)")
                 else:
                     print("You already tried that! Try again")
             else:
