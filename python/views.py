@@ -1,5 +1,8 @@
-from models import hangman as hm
-import controllers as ctr
+from Models.models import hangman as hm
+import Controllers.progress as prgctr
+import Controllers.attempts as atpctr
+import Controllers.checks as chkctr
+import Controllers.operations as opctr
 
 def playing():
     return True
@@ -8,8 +11,8 @@ def playing():
 while playing:
     if hm.word == None:
         word = input(str("Select a word: "))
-        if ctr.check_type(word):
-            ctr.save_word(word,hm)
+        if chkctr.check_type(word):
+            opctr.save_word(word,hm)
         else:
             print("The word must contain only letters")
     else:
@@ -18,22 +21,22 @@ while playing:
 
         # Help
         if operation == '0':
-            ctr.get_operations()
+            prgctr.get_operations()
 
         # End Game
         elif operation == 'x':
             print("Game Over!\n")
-            ctr.clear_terminal()
+            opctr.clear_terminal()
             hm.word = None
 
         # Try letter
         elif operation == '1':
             letter = str(input("Try a letter: "))
-            if ctr.check_length(letter):
-                if not ctr.check_misses(letter, hm):
-                    if not ctr.try_letter(letter,hm):
+            if chkctr.check_length(letter):
+                if not chkctr.check_misses(letter, hm):
+                    if not atpctr.try_letter(letter,hm):
                         print(f"'{letter}' isn't in the word :(")
-                        ctr.check_fails(hm)
+                        chkctr.check_fails(hm)
                     else:
                         print("You are correct! :)")
                 else:
@@ -44,28 +47,28 @@ while playing:
         # Try Word
         elif operation == '2':
             attempt = str(input("Try a word: "))
-            if not ctr.check_misses(attempt, hm):
-                if not ctr.try_word(attempt,hm):
+            if not chkctr.check_misses(attempt, hm):
+                if not atpctr.try_word(attempt,hm):
                     print(f"'{attempt}' isn't the word :(")
-                    ctr.check_fails(hm)
+                    chkctr.check_fails(hm)
                 else:
                     hm.n_rounds +=1
                     print("You are correct! :)")
-                    ctr.stats(hm)
+                    prgctr.stats(hm)
             else:
                 print("You already tried that! Try again")
 
         # Get Word Progress
         elif operation == '3':
-            ctr.get_word(hm)
+            prgctr.get_word(hm)
 
         # Get Hangman progress
         elif operation == '4':
-            ctr.hangman(hm)
+            prgctr.hangman(hm)
 
         # Get Wrong Attempts
         elif operation == '5':
-            ctr.get_wrg_attempts(hm)
+            prgctr.get_wrg_attempts(hm)
         
         else:
             print("That operations doesn't exist :/")
