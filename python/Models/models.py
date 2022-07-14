@@ -12,11 +12,4 @@ class hangman():
         self.n_mistakes = n_mistakes
         self.n_rounds = n_rounds
 
-class players():
-    name = None
-    id = 0
-    wrg_attempts = []
-    def __init__(self, id:int, name:str, wrg_attempts:array) -> None:
-        self.id = id
-        self.name = name
-        self.wrg_attempts = wrg_attempts
+mode = None

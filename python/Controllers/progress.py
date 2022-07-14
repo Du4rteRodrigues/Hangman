@@ -1,4 +1,5 @@
 import views as vw
+from Models.models import mode as md
 
 # Returns the progress of the word
 def get_word(hm):
@@ -96,7 +97,8 @@ def hangman(hm):
 
 
 # Returns end of game stats
-def stats(hm):
+def stats(hm, md):
+    md
     print("\n---Game Over!---")
     print(f"Word: {hm.word}")
     print(f"Rounds: {hm.n_rounds}")
@@ -105,9 +107,11 @@ def stats(hm):
     print("Want to play again?")
     restart = input("'Y' if yes or 'N' if no: ")
     if restart == 'Y':
+        md = None
         hm.word = None
         hm.wrong_attempts.clear()
         hm.n_rounds = 0
         hm.n_mistakes = 0
+
     elif restart == 'N':
         vw.playing = False

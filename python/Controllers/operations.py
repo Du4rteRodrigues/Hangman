@@ -9,6 +9,13 @@ def get_operations():
     print("2: Try Word")
     print("------------------")
 
+def get_modes():
+    print("----Modes----")
+    print("1: Normal")
+    print("2: Random")
+    print("3: Calculator")
+    print("-------------\n")
+
 # Saves the word 
 def save_word(word,hm):
     hm.word = word

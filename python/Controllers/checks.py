@@ -14,8 +14,8 @@ def check_type(word):
         return False
 
 
-def check_letter(letter,hm):
-    if not try_letter(letter,hm):
+def check_letter(letter,hm,md):
+    if not try_letter(letter,hm,md):
         hm.n_mistakes +=1
         hm.n_rounds +=1
         return False
@@ -23,8 +23,8 @@ def check_letter(letter,hm):
     return hm
 
 
-def check_word(word,hm):
-    if not try_word(word,hm):
+def check_word(word,hm,md):
+    if not try_word(word,hm,md):
         hm.n_mistakes +=2
         hm.n_rounds +=1
         return False
