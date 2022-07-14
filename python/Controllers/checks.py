@@ -1,6 +1,8 @@
 import re
 import views as vw
 from Models.models import hangman as hm
+from Controllers.progress import stats
+from Controllers.attempts import *
 
 # Checkes the type of the word
 def check_type(word):
@@ -10,6 +12,24 @@ def check_type(word):
         except ValueError:
             return True
         return False
+
+
+def check_letter(letter,hm):
+    if not try_letter(letter,hm):
+        hm.n_mistakes +=1
+        hm.n_rounds +=1
+        return False
+    hm.n_rounds +=1
+    return hm
+
+
+def check_word(word,hm):
+    if not try_word(word,hm):
+        hm.n_mistakes +=2
+        hm.n_rounds +=1
+        return False
+    hm.n_rounds +=1
+    return hm
 
 
 # Checked the length of the letters

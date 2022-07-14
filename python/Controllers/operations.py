@@ -6,10 +6,6 @@ def get_operations():
     print("x: End Game")
     print("1: Try Letter")
     print("2: Try Word")
-    print("3: View Word")
-    print("4: View Hangman")
-    print("5: View Failed Attempts")
-
 
 # Saves the word 
 def save_word(word,hm):

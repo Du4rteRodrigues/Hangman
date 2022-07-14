@@ -3,11 +3,14 @@ import views as vw
 # Returns the progress of the word
 def get_word(hm):
     print(hm.hidden_word)
+    return(hm.hidden_word)
+
 
 
 # Returns the list of the failed attempts
 def get_wrg_attempts(hm):
     print(hm.wrong_attempts)
+    return(hm.wrong_attempts)
 
 
 # Contains the progress of the hanged man

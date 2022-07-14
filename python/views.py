@@ -16,12 +16,17 @@ while playing:
         else:
             print("The word must contain only letters")
     else:
+        opctr.clear_terminal()
+        prgctr.hangman(hm)
+        prgctr.get_word(hm)
+        print("")
+        prgctr.get_wrg_attempts(hm)
         print("\nChoose operation '0' for help.")
         operation = (input("Choose an operation: "))
 
         # Help
         if operation == '0':
-            prgctr.get_operations()
+            opctr.get_operations()
 
         # End Game
         elif operation == 'x':
@@ -34,7 +39,7 @@ while playing:
             letter = str(input("Try a letter: "))
             if chkctr.check_length(letter):
                 if not chkctr.check_misses(letter, hm):
-                    if not atpctr.try_letter(letter,hm):
+                    if not chkctr.check_letter(letter,hm):
                         print(f"'{letter}' isn't in the word :(")
                         chkctr.check_fails(hm)
                     else:
@@ -48,27 +53,27 @@ while playing:
         elif operation == '2':
             attempt = str(input("Try a word: "))
             if not chkctr.check_misses(attempt, hm):
-                if not atpctr.try_word(attempt,hm):
+                if not chkctr.check_word(attempt,hm):
+                # if not atpctr.try_word(attempt,hm):
                     print(f"'{attempt}' isn't the word :(")
                     chkctr.check_fails(hm)
                 else:
-                    hm.n_rounds +=1
                     print("You are correct! :)")
                     prgctr.stats(hm)
             else:
                 print("You already tried that! Try again")
 
-        # Get Word Progress
-        elif operation == '3':
-            prgctr.get_word(hm)
+        # # Get Word Progress
+        # elif operation == '3':
+        #     prgctr.get_word(hm)
 
-        # Get Hangman progress
-        elif operation == '4':
-            prgctr.hangman(hm)
+        # # Get Hangman progress
+        # elif operation == '4':
+        #     prgctr.hangman(hm)
 
-        # Get Wrong Attempts
-        elif operation == '5':
-            prgctr.get_wrg_attempts(hm)
+        # # Get Wrong Attempts
+        # elif operation == '5':
+        #     prgctr.get_wrg_attempts(hm)
         
         else:
             print("That operations doesn't exist :/")
