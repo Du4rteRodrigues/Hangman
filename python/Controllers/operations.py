@@ -3,9 +3,11 @@ import os
 
 # Shows all operations
 def get_operations():
-    print("x: End Game")
+    print("----Operations----")
+    print("0: End Game")
     print("1: Try Letter")
     print("2: Try Word")
+    print("------------------")
 
 # Saves the word 
 def save_word(word,hm):

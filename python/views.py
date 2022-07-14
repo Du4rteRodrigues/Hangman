@@ -17,21 +17,17 @@ while playing:
             print("The word must contain only letters")
     else:
         opctr.clear_terminal()
+        opctr.get_operations()
         prgctr.hangman(hm)
         prgctr.get_word(hm)
         print("")
         prgctr.get_wrg_attempts(hm)
-        print("\nChoose operation '0' for help.")
-        operation = (input("Choose an operation: "))
+        operation = (input("\nChoose an operation: "))
 
-        # Help
-        if operation == '0':
-            opctr.get_operations()
 
         # End Game
-        elif operation == 'x':
+        if operation == '0':
             print("Game Over!\n")
-            opctr.clear_terminal()
             hm.word = None
 
         # Try letter
@@ -63,17 +59,6 @@ while playing:
             else:
                 print("You already tried that! Try again")
 
-        # # Get Word Progress
-        # elif operation == '3':
-        #     prgctr.get_word(hm)
-
-        # # Get Hangman progress
-        # elif operation == '4':
-        #     prgctr.hangman(hm)
-
-        # # Get Wrong Attempts
-        # elif operation == '5':
-        #     prgctr.get_wrg_attempts(hm)
         
         else:
             print("That operations doesn't exist :/")
