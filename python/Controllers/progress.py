@@ -98,7 +98,6 @@ def hangman(hm):
 
 # Returns end of game stats
 def stats(hm, md):
-    md
     print("\n---Game Over!---")
     print(f"Word: {hm.word}")
     print(f"Rounds: {hm.n_rounds}")
@@ -106,12 +105,16 @@ def stats(hm, md):
     print("----------------\n")
     print("Want to play again?")
     restart = input("'Y' if yes or 'N' if no: ")
-    if restart == 'Y':
+    if restart == 'Y' or restart == 'y':
         md = None
         hm.word = None
         hm.wrong_attempts.clear()
         hm.n_rounds = 0
         hm.n_mistakes = 0
 
-    elif restart == 'N':
+    elif restart == 'N' or restart == 'n':
         vw.playing = False
+    else:
+        print("\nThat operation doesn't exist.")
+        print("Try again.")
+        stats(hm, md)

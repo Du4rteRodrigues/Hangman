@@ -12,13 +12,18 @@ def playing():
 while playing:
     if md == None:
         opctr.get_modes()
-        md = int(input("Choose a mode: "))
+        try:
+            md = int(input("Choose a mode: "))
+        except:
+            opctr.clear_terminal()
+            print("That operation doesn't exist.\n")
 
     # Normal
     if md == 1:
         if hm.word == None:
             word = input(str("Select a word: "))
             if chkctr.check_type(word):
+                hm.n_rounds = 1
                 opctr.save_word(word,hm)
             else:
                 print("The word must contain only letters")
@@ -45,6 +50,8 @@ while playing:
                         if not chkctr.check_letter(letter,hm,md):
                             print(f"'{letter}' isn't in the word :(")
                             chkctr.check_fails(hm)
+                        elif  not(hm.word == word):
+                            pass
                         else:
                             print("You are correct! :)")
                     else:
